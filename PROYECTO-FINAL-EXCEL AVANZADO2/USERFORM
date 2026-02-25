@@ -1,0 +1,65 @@
+Private Sub CommandButtonIngresarDatos_Click()
+Dim sFecha As Date
+Dim sEstadoID As String
+Dim sProductoID As String
+Dim sCantidad As Integer
+Dim cEstados As Range
+Dim rEstados As Variant
+Dim cProducto As Range
+Dim rProducto As Variant
+
+If Not IsDate(Me.TextBox1.Text) Then
+MsgBox "Ingresar Fecha Valida"
+Me.TextBox1.SetFocus
+Exit Sub
+End If
+
+Set cEstados = Sheets("Estado").Range("A1").CurrentRegion.Columns(1)
+rEstados = Application.Match(TextBox2.Value, cEstados, 0)
+If IsError(rEstados) Then
+MsgBox "Ingresar Estado Valido"
+TextBox2.SetFocus
+Exit Sub
+End If
+
+Set cProducto = Sheets("Producto").Range("A1").CurrentRegion.Columns(1)
+rProducto = Application.Match(TextBox3.Value, cProducto, 0)
+If IsError(rProducto) Then
+MsgBox "Ingresar Producto Valido"
+TextBox3.SetFocus
+Exit Sub
+End If
+
+UltFila = Hoja1.Range("A1").CurrentRegion.Rows.Count + 1
+
+sMensaje = "Datos Registrados con Éxito"
+
+Rem colocando un titulo a la ventana emergente
+stitulo = "RESOLUCIÓN"
+ 
+With Hoja1
+Rem colocando el texto
+          .Cells(UltFila, 1) = Me.TextBox1.Text
+          .Cells(UltFila, 2) = Me.TextBox2.Text
+          .Cells(UltFila, 3) = Me.TextBox3.Text
+          .Cells(UltFila, 4) = Me.TextBox4.Text
+End With
+         
+         Me.TextBox1.SetFocus
+MsgBox sMensaje, vbInformation, stitulo
+ 
+End Sub
+
+--------------------------------------------
+Private Sub CommandButtonLimpiarDatos_Click()
+         Me.TextBox1.Text = ""
+         Me.TextBox2.Text = ""
+         Me.TextBox3.Text = ""
+         Me.TextBox4.Text = ""
+         Me.TextBox1.SetFocus
+End Sub
+
+-----------------------------------
+Private Sub CommandButtonSalir_Click()
+End
+End Sub
