@@ -85,3 +85,7 @@ Me.CmbCarrera.RowSource = "Carrera"
 Me.CmbTurno.RowSource = "Turno"
 
 End Sub
+
+
+<img width="489" height="360" alt="image" src="https://github.com/user-attachments/assets/4156d82b-42a5-4bfb-9427-f00dd80a694a" />
+
